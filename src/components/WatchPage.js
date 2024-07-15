@@ -27,12 +27,12 @@ const WatchPage = () => {
   }, []);
 
   return (
-    <div className="py-4 px-12 col-span-7 grid grid-flow-col grid-cols-4">
-      <div className="col-span-3">
-        <div className="">
+    <div className="py-4 px-8 col-span-7 grid grid-flow-col grid-cols-9">
+      <div className="col-span-7">
+        <div className="w-fit">
           <iframe
             className="shadow-2xl"
-            width="950"
+            width="900"
             height="500"
             src={
               "https://www.youtube.com/embed/" +
@@ -43,42 +43,42 @@ const WatchPage = () => {
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
           ></iframe>
-          {videoInfo && (
-            <div className="">
-              <h1 className="font-bold text-xl my-3">
-                {videoInfo.snippet.title}
-              </h1>
-              <div className="flex justify-between">
-                <h2 className="my-2 font-semibold text-lg">
-                  {videoInfo.snippet.channelTitle}
-                </h2>
-                <div>
-                  <button className="py-2 px-6 mx-2 bg-gray-700 text-white rounded-full">
-                    Join
-                  </button>
-                  <button className="py-2 px-6 mx-2 bg-red-800 text-white rounded-full">
-                    Subscribe 🔔
-                  </button>
-                  <button className="py-2 px-4 bg-gray-700 text-white rounded-l-full">
-                    👍{videoInfo.statistics.likeCount}
-                  </button>
-                  <button className="py-2 px-4 ml-[1px] bg-gray-700 text-white rounded-r-full">
-                    👎
-                  </button>
-                </div>
-              </div>
-              <div className="bg-gray-300 p-3 mt-2 rounded-lg shadow-lg">
-                <h1 className="font-semibold mb-2">
-                  Description{" "}
-                  <span className="cursor-pointer" onClick={handleDescription}>
-                    🔽
-                  </span>
-                </h1>
-                {showDescription && videoInfo.snippet.description}
+        </div>
+        {videoInfo && (
+          <div className="w-full">
+            <h1 className="font-bold text-xl my-3">
+              {videoInfo.snippet.title}
+            </h1>
+            <div className="flex justify-between">
+              <h2 className="my-2 font-semibold text-lg">
+                {videoInfo.snippet.channelTitle}
+              </h2>
+              <div>
+                <button className="py-2 px-6 mx-2 bg-gray-700 text-white rounded-full">
+                  Join
+                </button>
+                <button className="py-2 px-6 mx-2 bg-red-800 text-white rounded-full">
+                  Subscribe 🔔
+                </button>
+                <button className="py-2 px-4 bg-gray-700 text-white rounded-l-full">
+                  👍{videoInfo.statistics.likeCount}
+                </button>
+                <button className="py-2 px-4 ml-[1px] bg-gray-700 text-white rounded-r-full">
+                  👎
+                </button>
               </div>
             </div>
-          )}
-        </div>
+            <div className="bg-gray-200 p-3 mt-2 rounded-lg shadow-lg w-full">
+              <h1 className="font-semibold mb-2">
+                Description{" "}
+                <span className="cursor-pointer" onClick={handleDescription}>
+                  🔽
+                </span>
+              </h1>
+              {showDescription && videoInfo.snippet.description}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
