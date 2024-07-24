@@ -3,22 +3,19 @@ import { useDispatch } from "react-redux";
 import { closeSidebar } from "../utils/appSlice";
 import { useSearchParams } from "react-router-dom";
 import { VIDEO_DETAILS_URL } from "../utils/constants";
+import VideoInfo from "./VideoInfo";
+import CommentContainer from "./CommentContainer";
 
 const WatchPage = () => {
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
   const [videoInfo, setVideoInfo] = useState(null);
-  const [showDescription, setShowDescription] = useState(false);
 
   const getVideoDetails = async () => {
     const data = await fetch(VIDEO_DETAILS_URL(searchParams.get("v")));
     const json = await data.json();
     console.log(json);
     setVideoInfo(json.items[0]);
-  };
-
-  const handleDescription = () => {
-    setShowDescription(!showDescription);
   };
 
   useEffect(() => {
@@ -44,41 +41,8 @@ const WatchPage = () => {
             allowFullScreen
           ></iframe>
         </div>
-        {videoInfo && (
-          <div className="w-full">
-            <h1 className="font-bold text-xl my-3">
-              {videoInfo.snippet.title}
-            </h1>
-            <div className="flex justify-between">
-              <h2 className="my-2 font-semibold text-lg">
-                {videoInfo.snippet.channelTitle}
-              </h2>
-              <div>
-                <button className="py-2 px-6 mx-2 bg-gray-700 text-white rounded-full">
-                  Join
-                </button>
-                <button className="py-2 px-6 mx-2 bg-red-800 text-white rounded-full">
-                  Subscribe 🔔
-                </button>
-                <button className="py-2 px-4 bg-gray-700 text-white rounded-l-full">
-                  👍{videoInfo.statistics.likeCount}
-                </button>
-                <button className="py-2 px-4 ml-[1px] bg-gray-700 text-white rounded-r-full">
-                  👎
-                </button>
-              </div>
-            </div>
-            <div className="bg-gray-200 p-3 mt-2 rounded-lg shadow-lg w-full">
-              <h1 className="font-semibold mb-2">
-                Description{" "}
-                <span className="cursor-pointer" onClick={handleDescription}>
-                  🔽
-                </span>
-              </h1>
-              {showDescription && videoInfo.snippet.description}
-            </div>
-          </div>
-        )}
+        {videoInfo && <VideoInfo videoInfo={videoInfo} />}
+        <CommentContainer commentCount={videoInfo?.statistics.commentCount} />
       </div>
     </div>
   );
