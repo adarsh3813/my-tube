@@ -3,9 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggleSidebarMenu } from "../utils/appSlice";
 import { YOUTUBE_SEARCH_API } from "../utils/constants";
 import { cacheResults } from "../utils/searchSlice";
+import { useNavigate, createSearchParams } from "react-router-dom";
+import NOTIFICATION_ICON from "../assets/notification-bell.png";
 
 const Head = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const searchCache = useSelector((store) => store.search);
   const [suggestions, setSuggestions] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -22,6 +25,17 @@ const Head = () => {
       };
     }
   }, [searchQuery]);
+
+  const handleSuggestionClick = (suggestion) => {
+    navigate({
+      pathname: "results",
+      search: createSearchParams({
+        search_query: [suggestion],
+      }).toString(),
+    });
+    setShowSuggestion(false);
+    setSearchQuery(suggestion);
+  };
 
   const toggleMenuHandler = () => {
     dispatch(toggleSidebarMenu());
@@ -63,7 +77,7 @@ const Head = () => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             onFocus={() => setShowSuggestion(true)}
-            onBlur={() => setShowSuggestion(false)}
+            // onBlur={() => setShowSuggestion(false)}
             placeholder="Try music..."
           />
           <button className="py-2 px-4 bg-gray-800 text-white rounded-r-full">
@@ -72,12 +86,13 @@ const Head = () => {
         </div>
         {showSuggestion && (
           <div className="absolute top-[8.8%] w-[38.5rem] bg-white border border-gray-300 rounded-lg shadow-lg">
-            <ul className="">
+            <ul>
               {suggestions.map((suggestion) => {
                 return (
                   <li
+                    onClick={() => handleSuggestionClick(suggestion)}
                     key={suggestion}
-                    className="hover:bg-gray-300 font-semibold py-2 px-3"
+                    className="hover:bg-gray-300 font-semibold cursor-pointer py-2 px-3"
                   >
                     🔍 {suggestion}
                   </li>
@@ -87,7 +102,10 @@ const Head = () => {
           </div>
         )}
       </div>
-      <div className="flex items-center">
+      <div className="flex items-center justify-evenly">
+        <div className="w-10">
+          <img src={NOTIFICATION_ICON} />
+        </div>
         <img
           className="h-9"
           alt="user"

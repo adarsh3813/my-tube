@@ -15,3 +15,12 @@ export const VIDEO_DETAILS_URL = (videoId) => {
 
 export const YOUTUBE_SEARCH_API =
   "http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
+
+export const YOUTUBE_SEARCH_RESULT = (query) => {
+  return (
+    "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=" +
+    query +
+    "&key=" +
+    YOUTUBE_API_KEY
+  );
+};

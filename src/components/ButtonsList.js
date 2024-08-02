@@ -16,6 +16,7 @@ const buttonList = [
 const ButtonsList = () => {
   return (
     <div className="flex">
+      <Button key={"all"} name={"All"} />
       {buttonList.map((item) => {
         return <Button key={item} name={item} />;
       })}
