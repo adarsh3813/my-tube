@@ -15,7 +15,7 @@ const SearchResultContainer = () => {
 
   useEffect(() => {
     getSearchResults();
-  }, []);
+  }, [results]);
 
   return (
     <div className="col-span-8 py-3 px-5">
