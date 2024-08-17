@@ -96,9 +96,9 @@ const comments = [
 const CommmentList = ({ comments }) => {
   return (
     <div>
-      {comments.map((comment) => {
+      {comments.map((comment, index) => {
         return (
-          <div>
+          <div key={index}>
             <Comment comment={comment} />
             <div className="border-l border-gray-200 pl-4 ml-2">
               <CommmentList comments={comment.replies} />
@@ -114,7 +114,7 @@ const Comment = ({ comment }) => {
   return (
     <div className="my-3 p-2 rounded-lg">
       <div className="flex">
-        <div className="min-w-9 max-w-9 mr-3">
+        <div className="w-9 mr-3">
           <img className="rounded-full" src={userImage} />
         </div>
         <div>

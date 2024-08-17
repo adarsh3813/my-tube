@@ -4,13 +4,16 @@ import Button from "./Button";
 const buttonList = [
   "Videos",
   "Movies",
+  "Data Structures",
+  "Spring Boot",
   "Music",
   "Games",
   "Live",
   "Football",
   "Stocks",
-  "Nifty",
+  "Nifty 50",
   "Market",
+  "Olympics",
 ];
 
 const ButtonsList = () => {

@@ -103,11 +103,11 @@ const Head = () => {
         )}
       </div>
       <div className="flex items-center justify-evenly">
-        <div className="w-10">
+        <div className="w-12 p-1 hover:bg-gray-200 rounded-full cursor-pointer">
           <img src={NOTIFICATION_ICON} />
         </div>
         <img
-          className="h-9"
+          className="h-9 cursor-pointer"
           alt="user"
           src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png"
         />

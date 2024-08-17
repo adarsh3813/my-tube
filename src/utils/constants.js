@@ -24,3 +24,5 @@ export const YOUTUBE_SEARCH_RESULT = (query) => {
     YOUTUBE_API_KEY
   );
 };
+
+export const OFFSET_LIVE_CHAT = 10;

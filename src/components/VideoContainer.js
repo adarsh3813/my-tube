@@ -20,7 +20,7 @@ const VideoContainer = () => {
   return popularVideoList == null ? (
     <VideoListShimmer />
   ) : (
-    <div className="flex flex-wrap">
+    <div className="flex flex-wrap justify-evenly">
       {popularVideoList.map((video) => {
         return (
           <Link to={"/watch?v=" + video.id}>
